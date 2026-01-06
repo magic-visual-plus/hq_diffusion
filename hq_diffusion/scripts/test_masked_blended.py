@@ -18,18 +18,15 @@ if __name__ == "__main__":
     # # make mask_image to pil image
 
     mask_image = diffusers.utils.numpy_to_pil(mask_image.numpy())[0]
-    print(np.unique(np.array(mask_image)))
-    mask_image.save("/root/autodl-tmp/tmp_mask.png")
     # init_image = diffusers.utils.load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/inpaint.png")
     # mask_image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/inpaint_mask.png")
 
     result = pipe(
-        prompt="a small horse",
+        prompt="a human face",
         image=init_image,
         mask_image=mask_image,
         padding_mask_crop=32,  # Crucial for "Only Masked" behavior
         # num_inference_steps=40,
-        guidance_scale=4.5,
         strength=0.8,
     ).images[0]
 
